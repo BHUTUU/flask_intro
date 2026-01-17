@@ -42,7 +42,7 @@ class TodoRepository:
             connection.close()
             return int(deleted) > 0
         return wrapper
-    def __change_todo(self, func):
+    def __update_todo(self, func):
         def wrapper(*args, **kwargs):
             query, value = func(*args, **kwargs)
             connection = get_connection()
@@ -70,18 +70,18 @@ class TodoRepository:
     @__delete_todo
     def delete_todo_by_completed(self, completed: bool):
         return "DELETE FROM todo WHERE completed = ?", (int(completed),)
-    @__change_todo
+    @__update_todo
     def change_todo_title(self, row_id: int, new_title: str):
         return "UPDATE todo SET title = ? WHERE id = ?", (str(new_title), row_id,)
-    @__change_todo
+    @__update_todo
     def change_todo_description(self, row_id: int, new_description: str):
         return "UPDATE todo SET description = ? WHERE id = ?", (str(new_description), row_id,)
-    @__change_todo
+    @__update_todo
     def change_todo_start_date(self, row_id: int, new_start_date: str):
         return "UPDATE todo SET start_date = ? WHERE id = ?", (str(new_start_date), row_id,)
-    @__change_todo
+    @__update_todo
     def change_todo_end_date(self, row_id: int, new_end_date: str):
         return "UPDATE todo SET end_date = ? WHERE id = ?", (str(new_end_date), row_id,)
-    @__change_todo
+    @__update_todo
     def change_todo_completed(self, row_id: int, new_completed: bool):
         return "UPDATE todo SET completed = ? WHERE id = ?", (int(new_completed), row_id,)
