@@ -22,7 +22,7 @@ class TodoModel:
     @property
     def end_date(self) -> str:
         return self._end_date
-    @proporty
+    @property
     def completed(self) -> bool:
         return self._completed
     @id.setter
