@@ -1,15 +1,15 @@
 from dataclasses import dataclass
 @dataclass
 class TodoModel:
-    _id: int
+    _todo_id: int
     _title: str
     _description: str
     _start_date: str
     _end_date: str
     _completed: bool
     @property
-    def id(self) -> int:
-        return self._id
+    def todo_id(self) -> int:
+        return self._todo_id
     @property
     def title(self) -> str:
         return self._title
@@ -25,11 +25,11 @@ class TodoModel:
     @property
     def completed(self) -> bool:
         return self._completed
-    @id.setter
-    def id(self, id: int) -> None:
-        if not id:
+    @todo_id.setter
+    def todo_id(self, id_value: int) -> None:
+        if not id_value:
             raise AttributeError('id cannot be None')
-        self._id = id
+        self._todo_id = id_value
     @title.setter
     def title(self, title: str) -> None:
         if not title.strip():

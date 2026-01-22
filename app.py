@@ -1,6 +1,9 @@
 
 from flask import Flask, render_template, request
 from models.TodoModel import TodoModel
+from repository.TodoRepository import TodoRepository
+from db import connector
+from db import init_db
 app = Flask(__name__)
 
 @app.route('/')

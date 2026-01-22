@@ -1,7 +1,10 @@
-from db.connector import  get_connection
+from db.connector import get_connection
 from models.TodoModel import TodoModel
+
+
 class TodoRepository:
-    def add(self, todo: TodoModel):
+    @classmethod
+    def add(cls, todo: TodoModel):
         connection = get_connection()
         cursor = connection.cursor()
         cursor.execute("""INSERT INTO todo(title, description, start_date, end_date, completed) values(?,?,?,?,?)""",
@@ -18,7 +21,7 @@ class TodoRepository:
         return todo_id
     def _row_to_todo(self, todo_row):
         return TodoModel(
-            _id = todo_row[0],
+            _todo_id= todo_row[0],
             _title= todo_row[1],
             _description= todo_row[2],
             _start_date= todo_row[3],
