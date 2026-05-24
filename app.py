@@ -10,9 +10,9 @@ app = Flask(__name__)
 def welcome():
     return render_template("todo.html")
 
-@app.route("/fetch_all_todos"):
+@app.route("/fetch_all_todos")
 def fetch_all_todos():
-# to work on!
+    pass
 
 
 if(__name__ == "__main__"):

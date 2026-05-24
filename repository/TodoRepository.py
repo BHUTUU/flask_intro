@@ -35,7 +35,8 @@ class TodoRepository:
         rows = cursor.fetchall()
         connection.close()
         return [self._row_to_todo(r) for r in rows]
-    def __delete_todo(self, func):
+    @staticmethod
+    def __delete_todo(func):
         def wrapper(*args, **kwargs):
             query, value = func(*args, **kwargs)
             connection = get_connection()
@@ -45,7 +46,8 @@ class TodoRepository:
             connection.close()
             return int(deleted) > 0
         return wrapper
-    def __update_todo(self, func):
+    @staticmethod
+    def __update_todo(func):
         def wrapper(*args, **kwargs):
             query, value = func(*args, **kwargs)
             connection = get_connection()
